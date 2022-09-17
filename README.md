@@ -21,7 +21,9 @@ func main() {
 
 	store := cookie.NewStore(secretKey)
 	session := sessions.Sessions("AUTH", store)
-	cookieAuth := gincookieauth.CookieAuth(false)
+	cookieAuth := gincookieauth.CookieAuth(gincookieauth.CookieAuthConfig{
+        AuthRequired: false,
+	})
     r.Use(session)
 	r.Use(cookieAuth)
 
